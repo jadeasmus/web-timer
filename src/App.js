@@ -3,13 +3,9 @@ import { useState, useEffect } from 'react'
 
 function App() {
 
-  const [time, setTime] = useState();
+  // const [time, setTime] = useState();
   const [showTimes, setShowTimes] = useState(false);
   const [isActive, setIsActive] = useState(false);
-
-  const handleClick = (event) => {
-    setTime(event.target.textContent)
-  }
 
   const [second, setSecond] = useState('00');
   const [minute, setMinute] = useState('00');
@@ -23,9 +19,10 @@ function App() {
 
     if (isActive) {
       intervalId = setInterval(() => {
-        const secondCounter = counter % 60;
-        const minuteCounter = Math.floor(counter / 60);
-        const hourCounter = Math.floor((counter / 60) / 60);
+        const hourCounter = Math.floor(counter / 3600);
+        const minuteCounter = Math.floor(counter / 60) % 60;
+        const secondCounter = (counter % 60);
+        
 
         const computedSecond = String(secondCounter).length === 1 ? `0${secondCounter}`: secondCounter;
         const computedMinute = String(minuteCounter).length === 1 ? `0${minuteCounter}`: minuteCounter;
@@ -35,7 +32,9 @@ function App() {
         setMinute(computedMinute);
         setHour(computedHour);
 
-        setCounter(counter => counter + 1);
+        // setCounter(counter => counter + 1);
+        setCounter(counter => counter - 1);
+
       }, 1000)
     }
 
@@ -51,6 +50,9 @@ function App() {
     setHour('00');
   }
   
+  const handleClick = (event) => {
+    setCounter(event.target.textContent)
+  }
 
   return (
     <div className="App">
@@ -63,16 +65,16 @@ function App() {
         <span className="second">{second}</span>
       </div>
 
-      {/* <button onClick={ () => setShowTimes(true) }> Set timer </button>
-      { showTimes && !time ? 
+      <button onClick={ () => setShowTimes(true) }> Set timer </button>
+      { showTimes && !counter ? 
         <div className="times">
-          <button onClick={event => handleClick(event)}>2</button>
+          <button onClick={event => handleClick(event)}>3600</button>
           <button onClick={event => handleClick(event)}>5</button>
           <button onClick={event => handleClick(event)}>10</button>
           <button onClick={event => handleClick(event)}>15</button>
         </div>
         : null
-      } */}
+      }
 
       <button onClick={ () => setIsActive(!isActive) }>{ isActive ? "Pause" : "Start" }</button>
 
