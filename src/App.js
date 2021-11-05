@@ -69,9 +69,16 @@ function App() {
       { showTimes && !counter ? 
         <div className="times">
           <button onClick={event => handleClick(event)}>3600</button>
-          <button onClick={event => handleClick(event)}>5</button>
-          <button onClick={event => handleClick(event)}>10</button>
-          <button onClick={event => handleClick(event)}>15</button>
+          <button onClick={event => handleClick(event)}>600</button>
+          <button onClick={event => handleClick(event)}>300</button>
+          <button onClick={event => handleClick(event)}>120</button>
+          <form className="custom" onSubmit={(e) => e.preventDefault()}>
+            <label> 
+              Custom:
+              <input type="text" value={counter} onChange={e => setCounter(parseInt(e.target.value))} className="time"></input>
+            </label>
+            <input type="submit" value="Submit"></input>
+          </form>
         </div>
         : null
       }
