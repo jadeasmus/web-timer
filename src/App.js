@@ -57,8 +57,8 @@ function App() {
   return (
     <div className="App">
  
-      <div className='time'>
-        <span className="hour">{hour}</span>
+      <div className=''>
+        <span className="text-red-400">{hour}</span>
           <span>:</span>
         <span className="minute">{minute}</span>
           <span>:</span>
