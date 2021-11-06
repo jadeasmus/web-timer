@@ -7,6 +7,7 @@ function App() {
   const [showTimes, setShowTimes] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [isPicked, setIsPicked] = useState(false)
+  const [E, setE] = useState('')
 
   const [second, setSecond] = useState('00');
   const [minute, setMinute] = useState('00');
@@ -19,6 +20,11 @@ function App() {
     let intervalId;
 
     if (isPicked) {
+
+      // const convertToSeconds = (counter) => {
+        
+      // }
+
       const hourCounter = Math.floor(counter / 3600);
       const minuteCounter = Math.floor(counter / 60) % 60;
       const secondCounter = (counter % 60);
@@ -61,7 +67,7 @@ function App() {
   return (
     <div className="bg-red-400 text-center h-screen">
  
-      <div className='text-white text-5xl pt-32'>
+      <div className='text-white text-5xl pt-32 pb-5'>
         <span className="">{hour}</span>
           <span>:</span>
         <span className="minute">{minute}</span>
@@ -78,8 +84,8 @@ function App() {
           <button onClick={event => handleClick(event)} className="text-red-500 px-3 m-3 rounded-md shadow-md bg-white">120</button>
 
           <form className="" onSubmit={(e) => e.preventDefault()}>
-            <input className="border border-red-400 rounded-md" type="text" placeholder="Custom" onChange={e => setCounter(parseInt(e.target.value))} className="time"></input>
-            <input type="submit" value="Submit"></input>
+            <input className="border border-red-400 rounded-md" type="text" placeholder="Custom" onChange={(e) => setE(parseInt(e.target.value))} className="time"></input>
+              <input type="submit" value="Submit" onClick={ () => setCounter(E) }></input>
           </form>
     
         </div>
