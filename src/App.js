@@ -44,9 +44,9 @@ function App() {
       }, 1000) // 1000 milliseconds per second
 
     }
-
+    
     return () => clearInterval(intervalId);
-  }, [isActive, counter])
+  }, [isActive, isPicked, counter])
 
  
   function stopTimer() {
@@ -67,7 +67,7 @@ function App() {
   return (
     <div className="bg-red-400 text-center h-screen">
  
-      <div className='text-white text-5xl pt-32 pb-5'>
+      <div className='text-white text-6xl pt-32 pb-8'>
         <span className="">{hour}</span>
           <span>:</span>
         <span className="minute">{minute}</span>
@@ -75,7 +75,7 @@ function App() {
         <span className="second">{second}</span>
       </div>
 
-      <button className="text-red-500 px-3 m-3 rounded-md shadow-md bg-white" onClick={ () => setShowTimes(true) }> Set timer </button>
+      <button className="text-red-500 px-3 py-1 text-md m-3 rounded-md shadow-md bg-white" onClick={ () => setShowTimes(true) }> Set timer </button>
       { showTimes && !counter ? 
         <div className="">
           <button onClick={event => handleClick(event)} className="text-red-500 px-3 m-3 rounded-md shadow-md bg-white">3600</button>
@@ -91,10 +91,10 @@ function App() {
         </div>
         : null
       }
-
-      <button className="text-red-500 px-3 m-3 rounded-md shadow-md bg-white " onClick={ () => setIsActive(!isActive) }>{ isActive ? "Pause" : "Start" }</button>
-
-      <button className="text-red-500 px-3 m-3 rounded-md shadow-md bg-white " onClick={ stopTimer }>Reset</button>
+      <div className="">
+        <button className="absolute bottom-1/4 left-1/3 text-red-500 text-xl h-24 w-24 mx-10 m-3 shadow-md bg-white rounded-full" onClick={ () => setIsActive(!isActive) }>{ isActive ? "Pause" : "Start" }</button>
+        <button className="absolute bottom-1/4 right-1/3 text-red-500 text-xl h-24 w-24 mx-10 m-3 shadow-md bg-white rounded-full" onClick={ stopTimer }>Reset</button>
+      </div>
     </div>
   
   );
