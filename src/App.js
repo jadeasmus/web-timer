@@ -6,6 +6,7 @@ function App() {
   // const [time, setTime] = useState();
   const [showTimes, setShowTimes] = useState(false);
   const [isActive, setIsActive] = useState(false);
+  const [isPicked, setIsPicked] = useState(false)
 
   const [second, setSecond] = useState('00');
   const [minute, setMinute] = useState('00');
@@ -17,25 +18,25 @@ function App() {
   useEffect(() => {
     let intervalId;
 
-    if (isActive) {
+    if (isPicked) {
+      const hourCounter = Math.floor(counter / 3600);
+      const minuteCounter = Math.floor(counter / 60) % 60;
+      const secondCounter = (counter % 60);
+
+      const computedSecond = String(secondCounter).length === 1 ? `0${secondCounter}`: secondCounter;
+      const computedMinute = String(minuteCounter).length === 1 ? `0${minuteCounter}`: minuteCounter;
+      const computedHour = String(hourCounter).length === 1 ? `0${hourCounter}`: hourCounter;
+
+      setSecond(computedSecond);
+      setMinute(computedMinute);
+      setHour(computedHour);
+
       intervalId = setInterval(() => {
-        const hourCounter = Math.floor(counter / 3600);
-        const minuteCounter = Math.floor(counter / 60) % 60;
-        const secondCounter = (counter % 60);
-        
+        if (isActive) {
+          setCounter(counter => counter - 1);
+        }
+      }, 1000) // 1000 milliseconds per second
 
-        const computedSecond = String(secondCounter).length === 1 ? `0${secondCounter}`: secondCounter;
-        const computedMinute = String(minuteCounter).length === 1 ? `0${minuteCounter}`: minuteCounter;
-        const computedHour = String(hourCounter).length === 1 ? `0${hourCounter}`: hourCounter;
-
-        setSecond(computedSecond);
-        setMinute(computedMinute);
-        setHour(computedHour);
-
-        // setCounter(counter => counter + 1);
-        setCounter(counter => counter - 1);
-
-      }, 1000)
     }
 
     return () => clearInterval(intervalId);
@@ -52,6 +53,8 @@ function App() {
   
   const handleClick = (event) => {
     setCounter(event.target.textContent)
+    setIsPicked(true);
+
   }
 
 
@@ -73,11 +76,12 @@ function App() {
           <button onClick={event => handleClick(event)} className="text-red-500 px-3 m-3 rounded-md shadow-md bg-white">600</button>
           <button onClick={event => handleClick(event)} className="text-red-500 px-3 m-3 rounded-md shadow-md bg-white">300</button>
           <button onClick={event => handleClick(event)} className="text-red-500 px-3 m-3 rounded-md shadow-md bg-white">120</button>
-          
+
           <form className="" onSubmit={(e) => e.preventDefault()}>
-            <input className="" type="text" placeholder="Custom" onChange={e => setCounter(parseInt(e.target.value))} className="time"></input>
+            <input className="border border-red-400 rounded-md" type="text" placeholder="Custom" onChange={e => setCounter(parseInt(e.target.value))} className="time"></input>
             <input type="submit" value="Submit"></input>
           </form>
+    
         </div>
         : null
       }
