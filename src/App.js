@@ -54,38 +54,37 @@ function App() {
     setCounter(event.target.textContent)
   }
 
+
   return (
-    <div className="App">
+    <div className="bg-red-400 text-center h-screen">
  
-      <div className=''>
-        <span className="text-red-400">{hour}</span>
+      <div className='text-white text-5xl pt-32'>
+        <span className="">{hour}</span>
           <span>:</span>
         <span className="minute">{minute}</span>
           <span>:</span>
         <span className="second">{second}</span>
       </div>
 
-      <button onClick={ () => setShowTimes(true) }> Set timer </button>
+      <button className="text-red-500 px-3 m-3 rounded-md shadow-md bg-white" onClick={ () => setShowTimes(true) }> Set timer </button>
       { showTimes && !counter ? 
-        <div className="times">
-          <button onClick={event => handleClick(event)}>3600</button>
-          <button onClick={event => handleClick(event)}>600</button>
-          <button onClick={event => handleClick(event)}>300</button>
-          <button onClick={event => handleClick(event)}>120</button>
-          <form className="custom" onSubmit={(e) => e.preventDefault()}>
-            <label> 
-              Custom:
-              <input type="text" value={counter} onChange={e => setCounter(parseInt(e.target.value))} className="time"></input>
-            </label>
+        <div className="">
+          <button onClick={event => handleClick(event)} className="text-red-500 px-3 m-3 rounded-md shadow-md bg-white">3600</button>
+          <button onClick={event => handleClick(event)} className="text-red-500 px-3 m-3 rounded-md shadow-md bg-white">600</button>
+          <button onClick={event => handleClick(event)} className="text-red-500 px-3 m-3 rounded-md shadow-md bg-white">300</button>
+          <button onClick={event => handleClick(event)} className="text-red-500 px-3 m-3 rounded-md shadow-md bg-white">120</button>
+          
+          <form className="" onSubmit={(e) => e.preventDefault()}>
+            <input className="" type="text" placeholder="Custom" onChange={e => setCounter(parseInt(e.target.value))} className="time"></input>
             <input type="submit" value="Submit"></input>
           </form>
         </div>
         : null
       }
 
-      <button onClick={ () => setIsActive(!isActive) }>{ isActive ? "Pause" : "Start" }</button>
+      <button className="text-red-500 px-3 m-3 rounded-md shadow-md bg-white " onClick={ () => setIsActive(!isActive) }>{ isActive ? "Pause" : "Start" }</button>
 
-      <button onClick={ stopTimer }>Reset</button>
+      <button className="text-red-500 px-3 m-3 rounded-md shadow-md bg-white " onClick={ stopTimer }>Reset</button>
     </div>
   
   );
