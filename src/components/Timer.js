@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import GetUserInfo from './GetUserInfo';
 
 const Timer = () => {
 
@@ -89,6 +90,8 @@ const Timer = () => {
           <button className="absolute bottom-1/4 left-1/3 text-red-500 text-xl h-24 w-24 mx-10 m-3 shadow-md bg-white rounded-full" onClick={ () => setIsActive(!isActive) }>{ isActive ? "Pause" : "Start" }</button>
           <button className="absolute bottom-1/4 right-1/3 text-red-500 text-xl h-24 w-24 mx-10 m-3 shadow-md bg-white rounded-full" onClick={ stopTimer }>Reset</button>
         </div>
+
+        <GetUserInfo />
   
       </div>
 

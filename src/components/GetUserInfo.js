@@ -30,7 +30,7 @@ const GetUserInfo = () => {
     }
 
     return ( 
-        <button onClick={handleGetPlaylists}>Get Playlists</button>
+        <button className="m-3 p-2 border-2 border-black rounded-md" onClick={handleGetPlaylists}>Get Playlists</button>
      );
 }
  

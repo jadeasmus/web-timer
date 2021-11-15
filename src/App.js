@@ -5,11 +5,11 @@ import GetUserInfo from './components/GetUserInfo';
 
 function App() {
   return (
-    <>
+    <div className="bg-red-400">
       <Timer />
       <SpotifyLogin />
-      <GetUserInfo />
-    </>
+      {/* <GetUserInfo /> */}
+    </div>
 
   );
 }
