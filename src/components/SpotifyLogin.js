@@ -38,6 +38,13 @@ const SpotifyLogin = () => {
             // get variables from url
             const { access_token, expires_in, token_type } = getReturnedParams(window.location.hash)
             console.log({ access_token })
+
+            // store items in local memory
+            localStorage.clear()
+            localStorage.setItem("accessToken", access_token)
+            localStorage.setItem("expiresIn", expires_in)
+            localStorage.setItem("tokenType", token_type)
+
         }
     })
 
