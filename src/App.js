@@ -90,6 +90,29 @@ function App() {
   const handleLogin = () => {
     window.location = `${auth_endpoint}?client_id=${client_id}&redirect_uri=${redirect_url}&scope=${scope_params}&response_type=token&show_dialog=true`;
   };
+
+  const getReturnedParams = (hash) => {
+    // leave out hashtag
+    const strAfterHash = hash.substring(1)
+    // find token_type and expires_in params
+    const param_array = strAfterHash.split("&")
+    const assigned_params = param_array.reduce((acc, currVal) => {
+      // console.log(currVal)
+      const [key, val] = currVal.split("=")
+      acc[key] = val
+      return acc
+    }, {});
+    return assigned_params
+  }
+
+  // retrieve params if login is successful
+  useEffect(() => {
+    if (window.location.hash) {
+      // get variables from url
+      const { access_token, expires_in, token_type } = getReturnedParams(window.location.hash)
+      console.log({ access_token })
+    }
+  })
   
   const handleClick = (event) => {
     setCounter(event.target.textContent)
