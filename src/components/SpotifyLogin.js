@@ -7,11 +7,14 @@ const SpotifyLogin = () => {
     const auth_endpoint = process.env.REACT_APP_AUTHORIZE_URL
 
     const scope_params = [
-    "playlist-modify-private",
-    "playlist-read-private", 
-    "user-read-playback-state",
-    "user-modify-playback-state",
-    "user-read-currently-playing"
+        "streaming",
+        "user-read-email",
+        "user-read-private",
+        "playlist-modify-private",
+        "playlist-read-private", 
+        "user-read-playback-state",
+        "user-modify-playback-state",
+        "user-read-currently-playing"
     ].join('%20');
 
     const handleLogin = () => {
@@ -37,7 +40,7 @@ const SpotifyLogin = () => {
         if (window.location.hash) {
             // get variables from url
             const { access_token, expires_in, token_type } = getReturnedParams(window.location.hash)
-            console.log({ access_token })
+            // console.log({ access_token })
 
             // store items in local memory
             localStorage.clear()
